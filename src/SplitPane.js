@@ -97,7 +97,7 @@ export default React.createClass({
         if (document.selection) {
             document.selection.empty();
         } else {
-            if (window.getSelection().getRangeAt(0).getClientRects.length > 0) {
+            if (window.getSelection().getRangeAt(0).getClientRects().length > 0) {
                 window.getSelection().removeAllRanges();
             }
         }
