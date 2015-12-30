@@ -2,7 +2,7 @@
   "name": "react-split-pane-2",
   "description": "fork of React split-pane component",
   "main": "index.js",
-  "version": "0.1.35",
+  "version": "0.1.36",
   "repository": {
     "type": "git",
     "url": "https://github.com/rohn/react-split-pane"

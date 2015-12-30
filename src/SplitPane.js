@@ -44,7 +44,6 @@ export default React.createClass({
 
 
     onMouseDown(event) {
-        this.unFocus();
         let position = this.props.split === 'vertical' ? event.clientX : event.clientY;
         this.setState({
             active: true,
