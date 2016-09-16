@@ -1,3 +1,3 @@
-var SplitPane = require('./src/SplitPane');
+var SplitPane = require('./lib/SplitPane');
 
 module.exports = SplitPane;
