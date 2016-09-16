@@ -1,4 +1,4 @@
-* Added height & width property for SplitPane (you may use percents, pixels, etc.)
+* Added height & width properties for SplitPane (you may use percents, pixels, etc.)
 * Fixed bug with minSize: original version only checked for size of first panel
 
 # React Split Pane
