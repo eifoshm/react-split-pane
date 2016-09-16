@@ -20,7 +20,9 @@ export default React.createClass({
     getDefaultProps() {
         return {
             split: 'vertical',
-            minSize: 0
+            minSize: 0,
+            height: '100%',
+            width: '100%'
         };
     },
 
@@ -45,9 +47,18 @@ export default React.createClass({
 
     onMouseDown(event) {
         let position = this.props.split === 'vertical' ? event.clientX : event.clientY;
+
+        const splitPane = this.refs.splitPane;
+        const nodeSplitPane = ReactDOM.findDOMNode(splitPane);
+
+        const widthSplitPane = nodeSplitPane.getBoundingClientRect().width;
+        const heightSplitPane = nodeSplitPane.getBoundingClientRect().height;
+        const splitPaneSize = this.props.split === 'vertical' ? widthSplitPane : heightSplitPane;
+
         this.setState({
             active: true,
-            position: position
+            position: position,
+            splitPaneSize: splitPaneSize
         });
     },
 
@@ -70,7 +81,8 @@ export default React.createClass({
                         resized: true
                     });
 
-                    if (newSize >= this.props.minSize) {
+                    if (newSize >= this.props.minSize &&
+                        this.state.splitPaneSize - newSize >= this.props.minSize) {
                         if (this.props.onChange) {
                           this.props.onChange(newSize);
                         }
@@ -114,20 +126,21 @@ export default React.createClass({
         if (split === 'vertical') {
             this.merge(style, {
                 flexDirection: 'row',
-                height: '100%',
+                height: this.props.height,
                 position: 'absolute',
                 left: 0,
-                right: 0
+                right: 0,
+                width: this.props.width
             });
         } else {
             this.merge(style, {
                 flexDirection: 'column',
-                height: '100%',
-                minHeight: '100%',
+                height: this.props.height,
+                minHeight: this.props.height,
                 position: 'absolute',
                 top: 0,
                 bottom: 0,
-                width: '100%'
+                width: this.props.width
             });
         }
 

@@ -1,3 +1,6 @@
+* Added height & width property for SplitPane (you may use percents, pixels, etc.)
+* Fixed bug with minSize: original version only checked for size of first panel
+
 # React Split Pane
 
 Split-Pane component built with [React](http://facebook.github.io/react), can be split vertically or horizontally.
