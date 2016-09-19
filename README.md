@@ -2,8 +2,9 @@
 * Fixed bug with minSize: original version only checked for size of first panel
 * Updated deps to React 15.3.1
 * Enabled user-select
+* Added optional child for Resizer element (SplitPane `resizerChildNode` property)
 
-# React Split Pane
+# Reac t Split Pane
 
 Split-Pane component built with [React](http://facebook.github.io/react), can be split vertically or horizontally.
 
