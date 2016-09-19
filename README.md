@@ -4,7 +4,7 @@
 * Enabled user-select
 * Added optional child for Resizer element (SplitPane `resizerChildNode` property)
 
-# Reac t Split Pane
+# React Split Pane
 
 Split-Pane component built with [React](http://facebook.github.io/react), can be split vertically or horizontally.
 
