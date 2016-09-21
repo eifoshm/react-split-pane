@@ -3,6 +3,7 @@
 * Updated deps to React 15.3.1
 * Enabled user-select
 * Added optional child for Resizer element (SplitPane `resizerChildNode` property)
+* Added className property to SplitPane (class appended to splitPane classes)
 
 # React Split Pane
 

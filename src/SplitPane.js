@@ -146,7 +146,7 @@ export default React.createClass({
         }
 
         const children = this.props.children;
-        const classes = ['SplitPane', split];
+        const classes = ['SplitPane', split, this.props.className];
         const prefixed = VendorPrefix.prefix({styles: style});
 
         return (
