@@ -3,8 +3,8 @@
 * Updated deps to React 15.3.1
 * Enabled user-select
 * Added optional child for Resizer element (SplitPane `resizerChildNode` property)
-* Added className property to SplitPane (class appended to splitPane classes)
-
+* Added className property to SplitPane (class appended to SplitPane classes)
+* Added paneClassName property to SplitPane (class apended to Pane classes)
 # React Split Pane
 
 Split-Pane component built with [React](http://facebook.github.io/react), can be split vertically or horizontally.

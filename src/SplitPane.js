@@ -151,7 +151,7 @@ export default React.createClass({
 
         return (
             <div className={classes.join(' ')} style={prefixed.styles} ref="splitPane">
-                <Pane ref="pane1" key="pane1" split={split}>{children[0]}</Pane>
+                <Pane ref="pane1" key="pane1" split={split} className={this.props.paneClassName}>{children[0]}</Pane>
                 <Resizer ref="resizer" key="resizer" onMouseDown={this.onMouseDown} child={this.props.resizerChildNode} split={split} />
                 <Pane ref="pane2" key="pane2" split={split}>{children[1]}</Pane>
             </div>
