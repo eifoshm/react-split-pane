@@ -72,7 +72,7 @@ export default React.createClass({
         ref.setState({
             size: newSize
         });
-        this.setPreviousWindowSize()
+        this.setPrevWindowSize()
     },
 
     onMouseDown(event) {
