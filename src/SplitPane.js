@@ -70,7 +70,7 @@ export default React.createClass({
             newSize = this.props.minSize;
         }
         ref.setState({
-            size: newSize
+            size: newSize + "px"
         });
     },
 
@@ -116,7 +116,7 @@ export default React.createClass({
                           this.props.onChange(newSize);
                         }
                         ref.setState({
-                            size: newSize
+                            size: newSize + "px"
                         });
                         this.paneSize = newSize;
                     }
