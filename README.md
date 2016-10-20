@@ -5,6 +5,7 @@
 * Added optional child for Resizer element (SplitPane `resizerChildNode` property)
 * Added className property to SplitPane (class appended to SplitPane classes)
 * Added paneClassName property to SplitPane (class apended to Pane classes)
+* Added proportional pane resizing on window resize
 # React Split Pane
 
 Split-Pane component built with [React](http://facebook.github.io/react), can be split vertically or horizontally.

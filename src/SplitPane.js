@@ -31,11 +31,14 @@ export default React.createClass({
     componentDidMount() {
         document.addEventListener('mouseup', this.onMouseUp);
         document.addEventListener('mousemove', this.onMouseMove);
+        window.addEventListener('resize', this.onResize);
+        this.setPrevWindowSize()
         const ref = this.refs.pane1;
         if (ref && this.props.defaultSize && !this.state.resized) {
             ref.setState({
                 size: this.props.defaultSize
             });
+            this.paneSize = parseInt(this.props.defaultSize);
         }
     },
 
@@ -45,6 +48,29 @@ export default React.createClass({
         document.removeEventListener('mousemove', this.onMouseMove);
     },
 
+    setPrevWindowSize() {
+        this.prevWindowSize = {
+            innerWidth: window.innerWidth,
+            innerHeight: window.innerHeight
+        };
+    },
+
+    onResize(event) {
+        if (!this.paneSize) {
+            return false;
+        }
+        const ref = this.refs.pane1;
+        let newSize;
+        if (this.props.split === 'vertical') {
+            newSize = (window.innerWidth /this.prevWindowSize.innerWidth) * this.paneSize
+        } else {
+            newSize = (window.innerHeight /this.prevWindowSize.innerHeight) * this.paneSize
+        }
+        ref.setState({
+            size: newSize
+        });
+        this.setPreviousWindowSize()
+    },
 
     onMouseDown(event) {
         let position = this.props.split === 'vertical' ? event.clientX : event.clientY;
@@ -90,6 +116,7 @@ export default React.createClass({
                         ref.setState({
                             size: newSize
                         });
+                        this.paneSize = newSize;
                     }
                 }
             }
