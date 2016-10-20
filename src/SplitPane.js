@@ -66,6 +66,9 @@ export default React.createClass({
         } else {
             newSize = (window.innerHeight /this.prevWindowSize.innerHeight) * this.paneSize
         }
+        if (newSize < minSize) {
+            newSize = minSize;
+        }
         ref.setState({
             size: newSize
         });
