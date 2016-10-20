@@ -32,7 +32,7 @@ export default React.createClass({
         document.addEventListener('mouseup', this.onMouseUp);
         document.addEventListener('mousemove', this.onMouseMove);
         window.addEventListener('resize', this.onResize);
-        this.setPrevWindowSize()
+        this.setInitialWindowSize()
         const ref = this.refs.pane1;
         if (ref && this.props.defaultSize && !this.state.resized) {
             ref.setState({
@@ -48,8 +48,8 @@ export default React.createClass({
         document.removeEventListener('mousemove', this.onMouseMove);
     },
 
-    setPrevWindowSize() {
-        this.prevWindowSize = {
+    setInitialWindowSize() {
+        this.initialWindowSize = {
             innerWidth: window.innerWidth,
             innerHeight: window.innerHeight
         };
@@ -62,9 +62,9 @@ export default React.createClass({
         const ref = this.refs.pane1;
         let newSize;
         if (this.props.split === 'vertical') {
-            newSize = (window.innerWidth /this.prevWindowSize.innerWidth) * this.paneSize
+            newSize = (window.innerWidth / this.initialWindowSize.innerWidth) * this.paneSize
         } else {
-            newSize = (window.innerHeight /this.prevWindowSize.innerHeight) * this.paneSize
+            newSize = (window.innerHeight / this.initialWindowSize.innerHeight) * this.paneSize
         }
         if (newSize < this.props.minSize) {
             newSize = this.props.minSize;
@@ -72,7 +72,6 @@ export default React.createClass({
         ref.setState({
             size: newSize
         });
-        this.setPrevWindowSize()
     },
 
     onMouseDown(event) {
