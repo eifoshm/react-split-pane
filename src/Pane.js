@@ -24,9 +24,9 @@ export default React.createClass({
         };
         if (this.state.size) {
             if (split === 'vertical') {
-                style.width = this.state.size;
+                style.width = this.state.size + "px";
             } else {
-                style.height = this.state.size;
+                style.height = this.state.size + "px";
                 style.display = 'flex';
             }
             style.flex = 'none';
