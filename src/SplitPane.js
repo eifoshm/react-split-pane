@@ -50,7 +50,8 @@ export default React.createClass({
     },
 
     componentWillReceiveProps(nextProps) {
-        var size = nextProps.size;
+        const ref = this.refs.pane1;
+        const size = nextProps.size;
         if (size) {
             ref.setState({
                 size: size
