@@ -48,6 +48,16 @@ export default React.createClass({
         document.removeEventListener('mousemove', this.onMouseMove);
     },
 
+    componentWillReceiveProps(nextProps) {
+        var size = nextProps.size;
+        if (size) {
+            this.setState({
+                size: size
+            });
+            this.paneSize = parseInt(size);
+        }
+    },
+
     setInitialWindowSize() {
         this.initialWindowSize = {
             innerWidth: window.innerWidth,
