@@ -23,7 +23,8 @@ export default React.createClass({
             minSize: 0,
             height: '100%',
             width: '100%',
-            resizerChildNode: null
+            resizerChildNode: null,
+            allowResize: true
         };
     },
 
@@ -51,7 +52,7 @@ export default React.createClass({
     componentWillReceiveProps(nextProps) {
         var size = nextProps.size;
         if (size) {
-            this.setState({
+            ref.setState({
                 size: size
             });
             this.paneSize = parseInt(size);
