@@ -75,6 +75,9 @@ export default React.createClass({
     },
 
     onMouseDown(event) {
+        if (!this.props.allowResize) {
+            return false;
+        }
         let position = this.props.split === 'vertical' ? event.clientX : event.clientY;
 
         const splitPane = this.refs.splitPane;
@@ -93,6 +96,9 @@ export default React.createClass({
 
 
     onMouseMove(event) {
+        if (!this.props.allowResize) {
+            return false;
+        }
         if (this.state.active) {
             const ref = this.refs.pane1;
             if (ref) {
@@ -127,6 +133,9 @@ export default React.createClass({
 
 
     onMouseUp() {
+        if (!this.props.allowResize) {
+            return false;
+        }
         this.setState({
             active: false
         });
@@ -177,11 +186,16 @@ export default React.createClass({
         const children = this.props.children;
         const classes = ['SplitPane', split, this.props.className];
         const prefixed = VendorPrefix.prefix({styles: style});
-
+        let resizerChild = this.props.resizerChildNode;
+        if (this.props.resizerChildNode) {
+            resizerChild = React.cloneElement(resizerChild, {
+                disabled: !this.props.allowResize
+            });
+        }
         return (
             <div className={classes.join(' ')} style={prefixed.styles} ref="splitPane">
                 <Pane ref="pane1" key="pane1" split={split} className={this.props.paneClassName}>{children[0]}</Pane>
-                <Resizer ref="resizer" key="resizer" onMouseDown={this.onMouseDown} child={this.props.resizerChildNode} split={split} />
+                <Resizer ref="resizer" key="resizer" onMouseDown={this.onMouseDown} child={resizerChild} split={split} />
                 <Pane ref="pane2" key="pane2" split={split} className={this.props.paneClassName}>{children[1]}</Pane>
             </div>
         );
