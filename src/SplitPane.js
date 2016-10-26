@@ -99,6 +99,10 @@ export default React.createClass({
         const heightSplitPane = nodeSplitPane.getBoundingClientRect().height;
         const splitPaneSize = this.props.split === 'vertical' ? widthSplitPane : heightSplitPane;
 
+        if (typeof this.props.onDragStarted === 'function') {
+            this.props.onDragStarted();
+        }
+
         this.setState({
             active: true,
             position: position,
@@ -148,6 +152,11 @@ export default React.createClass({
         if (!this.props.allowResize) {
             return false;
         }
+
+        if (typeof this.props.onDragFinished === 'function') {
+            this.props.onDragFinished();
+        }
+
         this.setState({
             active: false
         });
