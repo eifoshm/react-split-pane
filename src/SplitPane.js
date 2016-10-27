@@ -33,7 +33,7 @@ export default React.createClass({
         document.addEventListener('mouseup', this.onMouseUp);
         document.addEventListener('mousemove', this.onMouseMove);
         window.addEventListener('resize', this.onResize);
-        this.setInitialWindowSize()
+        this.setInitialWindowSize();
         const ref = this.refs.pane1;
         if (ref && this.props.defaultSize && !this.state.resized) {
             ref.setState({
@@ -181,6 +181,8 @@ export default React.createClass({
             outline: 'none',
             overflow: 'hidden'
         };
+
+        style.userSelect = this.state.active ? 'none' : 'auto';
 
         if (split === 'vertical') {
             this.merge(style, {
