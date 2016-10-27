@@ -20,7 +20,8 @@ export default React.createClass({
     getDefaultProps() {
         return {
             split: 'vertical',
-            minSize: 0,
+            minSizeLeft: 0,
+            minSizeRight: 0,
             height: '100%',
             width: '100%',
             resizerChildNode: null,
@@ -78,8 +79,8 @@ export default React.createClass({
         } else {
             newSize = (window.innerHeight / this.initialWindowSize.innerHeight) * this.paneSize
         }
-        if (newSize < this.props.minSize) {
-            newSize = this.props.minSize;
+        if (newSize < this.props.minSizeLeft) {
+            newSize = this.props.minSizeLeft;
         }
         ref.setState({
             size: newSize + "px"
@@ -93,11 +94,17 @@ export default React.createClass({
         let position = this.props.split === 'vertical' ? event.clientX : event.clientY;
 
         const splitPane = this.refs.splitPane;
-        const nodeSplitPane = ReactDOM.findDOMNode(splitPane);
+        const resizer = this.refs.resizer;
+        const splitPaneBoundingRect = ReactDOM.findDOMNode(splitPane).getBoundingClientRect();
+        const resizerBoundingRect = ReactDOM.findDOMNode(resizer).getBoundingClientRect();
 
-        const widthSplitPane = nodeSplitPane.getBoundingClientRect().width;
-        const heightSplitPane = nodeSplitPane.getBoundingClientRect().height;
+        const widthSplitPane = splitPaneBoundingRect.width;
+        const heightSplitPane = splitPaneBoundingRect.height;
         const splitPaneSize = this.props.split === 'vertical' ? widthSplitPane : heightSplitPane;
+
+        const widthResizer = resizerBoundingRect.width;
+        const heightResizer = resizerBoundingRect.height;
+        const resizerSize = this.props.split === 'vertical' ? widthResizer : heightResizer;
 
         if (typeof this.props.onDragStarted === 'function') {
             this.props.onDragStarted();
@@ -106,7 +113,8 @@ export default React.createClass({
         this.setState({
             active: true,
             position: position,
-            splitPaneSize: splitPaneSize
+            splitPaneSize: splitPaneSize,
+            resizerSize: resizerSize
         });
     },
 
@@ -132,8 +140,8 @@ export default React.createClass({
                         resized: true
                     });
 
-                    if (newSize >= this.props.minSize &&
-                        this.state.splitPaneSize - newSize >= this.props.minSize) {
+                    if (newSize >= this.props.minSizeLeft &&
+                        this.state.splitPaneSize - this.state.resizerSize - newSize >= this.props.minSizeRight) {
                         if (this.props.onChange) {
                           this.props.onChange(newSize);
                         }
