@@ -25,8 +25,10 @@ export default React.createClass({
         if (this.state.size) {
             if (split === 'vertical') {
                 style.minWidth = this.state.size;
+                style.maxWidth = this.state.size;
             } else {
                 style.minHeight = this.state.size;
+                style.maxHeight = this.state.size;
                 style.display = 'flex';
             }
             style.flex = 'none';
