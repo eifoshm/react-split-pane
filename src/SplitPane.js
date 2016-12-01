@@ -48,6 +48,7 @@ export default React.createClass({
     componentWillUnmount() {
         document.removeEventListener('mouseup', this.onMouseUp);
         document.removeEventListener('mousemove', this.onMouseMove);
+        window.removeEventListener('resize', this.onResize);
     },
 
     componentWillReceiveProps(nextProps) {
